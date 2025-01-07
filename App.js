@@ -40,6 +40,13 @@ export default function App() {
     ]);
     // setEnteredGoalText("");
   }
+
+  function deleteGoalHandler(id) {
+    setCourseGoals((currentCourseGoals) =>
+      currentCourseGoals.filter((goal) => goal.id !== id)
+    );
+  }
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler} />
@@ -49,7 +56,12 @@ export default function App() {
           data={courseGoals}
           keyExtractor={(item, index) => item.id}
           renderItem={(itemData) => (
-            <GoalItem text={itemData.item.text} index={itemData.index} />
+            <GoalItem
+              text={itemData.item.text}
+              index={itemData.index}
+              id={itemData.item.id}
+              onDeleteGoal={deleteGoalHandler}
+            />
           )}
         />
       </View>
