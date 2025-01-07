@@ -12,25 +12,45 @@ import {
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
-    "Learn React Native",
-    "Learn Firebase",
-    "Learn NestJS",
+    { text: "Learn React Native", key: "1" },
+    { text: "Learn Firebase", key: "2" },
+    { text: "Learn NestJS", key: "3" },
+    { text: "Learn React Native", key: "4" },
+    { text: "Learn Firebase", key: "5" },
+    { text: "Learn NestJS", key: "6" },
+    { text: "Learn React Native", key: "7" },
+    { text: "Learn Firebase", key: "8" },
+    { text: "Learn NestJS", key: "9" },
+    { text: "Learn React Native", key: "10" },
+    { text: "Learn Firebase", key: "11" },
+    { text: "Learn NestJS", key: "12" },
+    { text: "Learn React Native", key: "13" },
+    { text: "Learn Firebase", key: "14" },
+    { text: "Learn NestJS", key: "15" },
+    { text: "Learn React Native", key: "16" },
+    { text: "Learn Firebase", key: "17" },
+    { text: "Learn NestJS", key: "18" },
   ]);
+  // const [courseGoals, setCourseGoals] = useState([
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  //   "Learn React Native",
+  //   "Learn Firebase",
+  //   "Learn NestJS",
+  // ]);
 
   function goalInputHandler(enteredText) {
     setEnteredGoalText(enteredText);
@@ -39,7 +59,7 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, key: Math.random().toString() },
     ]);
     // setEnteredGoalText("");
   }
@@ -54,15 +74,15 @@ export default function App() {
         <Button title="add goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals.map((goal, index) => (
-            <View key={index} style={styles.goalItem}>
-              <Text style={styles.goalText}>
-                {index + 1}. {goal}
-              </Text>
+        <FlatList
+          alwaysBounceVertical={false}
+          data={courseGoals}
+          renderItem={(itemData) => (
+            <View style={styles.goalItem}>
+              <Text style={styles.goalText}>{itemData.item.text}</Text>
             </View>
-          ))}
-        </ScrollView>
+          )}
+        />
       </View>
     </View>
   );
