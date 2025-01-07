@@ -12,45 +12,25 @@ import {
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([
-    { text: "Learn React Native", key: "1" },
-    { text: "Learn Firebase", key: "2" },
-    { text: "Learn NestJS", key: "3" },
-    { text: "Learn React Native", key: "4" },
-    { text: "Learn Firebase", key: "5" },
-    { text: "Learn NestJS", key: "6" },
-    { text: "Learn React Native", key: "7" },
-    { text: "Learn Firebase", key: "8" },
-    { text: "Learn NestJS", key: "9" },
-    { text: "Learn React Native", key: "10" },
-    { text: "Learn Firebase", key: "11" },
-    { text: "Learn NestJS", key: "12" },
-    { text: "Learn React Native", key: "13" },
-    { text: "Learn Firebase", key: "14" },
-    { text: "Learn NestJS", key: "15" },
-    { text: "Learn React Native", key: "16" },
-    { text: "Learn Firebase", key: "17" },
-    { text: "Learn NestJS", key: "18" },
+    { text: "Learn React Native", id: "1" },
+    { text: "Learn Firebase", id: "2" },
+    { text: "Learn NestJS", id: "3" },
+    { text: "Learn React Native", id: "4" },
+    { text: "Learn Firebase", id: "5" },
+    { text: "Learn NestJS", id: "6" },
+    { text: "Learn React Native", id: "7" },
+    { text: "Learn Firebase", id: "8" },
+    { text: "Learn NestJS", id: "9" },
+    { text: "Learn React Native", id: "10" },
+    { text: "Learn Firebase", id: "11" },
+    { text: "Learn NestJS", id: "12" },
+    { text: "Learn React Native", id: "13" },
+    { text: "Learn Firebase", id: "14" },
+    { text: "Learn NestJS", id: "15" },
+    { text: "Learn React Native", id: "16" },
+    { text: "Learn Firebase", id: "17" },
+    { text: "Learn NestJS", id: "18" },
   ]);
-  // const [courseGoals, setCourseGoals] = useState([
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  //   "Learn React Native",
-  //   "Learn Firebase",
-  //   "Learn NestJS",
-  // ]);
 
   function goalInputHandler(enteredText) {
     setEnteredGoalText(enteredText);
@@ -59,7 +39,7 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      { text: enteredGoalText, key: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
     // setEnteredGoalText("");
   }
@@ -77,9 +57,12 @@ export default function App() {
         <FlatList
           alwaysBounceVertical={false}
           data={courseGoals}
+          keyExtractor={(item, index) => item.id}
           renderItem={(itemData) => (
             <View style={styles.goalItem}>
-              <Text style={styles.goalText}>{itemData.item.text}</Text>
+              <Text style={styles.goalText}>
+                {itemData.index + 1 + ". " + itemData.item.text}
+              </Text>
             </View>
           )}
         />
