@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
@@ -24,13 +24,14 @@ export default function App() {
     { text: "Implement security best practices", id: "17" },
     { text: "Master debugging and DevTools", id: "18" },
   ]);
+  const [modalIsViable, setModalIsVisible] = useState(false);
 
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
-    // setEnteredGoalText("");
+    endAddGoalHandler();
   }
 
   function deleteGoalHandler(id) {
@@ -39,9 +40,24 @@ export default function App() {
     );
   }
 
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
+
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <Button title="Add new goal" onPress={startAddGoalHandler} />
+      {modalIsViable && (
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          visable={modalIsViable}
+          onCancel={endAddGoalHandler}
+        />
+      )}
       <View style={styles.goalsContainer}>
         <FlatList
           alwaysBounceVertical={false}
