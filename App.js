@@ -1,36 +1,28 @@
-import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Button,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { useState } from "react";
+import { StyleSheet, View, FlatList } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([
-    { text: "Learn React Native", id: "1" },
-    { text: "Learn Firebase", id: "2" },
-    { text: "Learn NestJS", id: "3" },
-    { text: "Learn React Native", id: "4" },
-    { text: "Learn Firebase", id: "5" },
-    { text: "Learn NestJS", id: "6" },
-    { text: "Learn React Native", id: "7" },
-    { text: "Learn Firebase", id: "8" },
-    { text: "Learn NestJS", id: "9" },
-    { text: "Learn React Native", id: "10" },
-    { text: "Learn Firebase", id: "11" },
-    { text: "Learn NestJS", id: "12" },
-    { text: "Learn React Native", id: "13" },
-    { text: "Learn Firebase", id: "14" },
-    { text: "Learn NestJS", id: "15" },
-    { text: "Learn React Native", id: "16" },
-    { text: "Learn Firebase", id: "17" },
-    { text: "Learn NestJS", id: "18" },
+    { text: "Master HTML, CSS and JavaScript fundamentals", id: "1" },
+    { text: "Learn React core concepts and hooks", id: "2" },
+    { text: "Build responsive web apps with React", id: "3" },
+    { text: "Learn Next.js for SSR and static generation", id: "4" },
+    { text: "Master state management with Redux/Context", id: "5" },
+    { text: "Learn React Native basics", id: "6" },
+    { text: "Build cross-platform mobile UIs", id: "7" },
+    { text: "Implement navigation in React Native", id: "8" },
+    { text: "Master React Native animations", id: "9" },
+    { text: "Learn TypeScript for type-safety", id: "10" },
+    { text: "Implement testing with Jest and RTL", id: "11" },
+    { text: "Master API integration and data fetching", id: "12" },
+    { text: "Learn authentication and authorization", id: "13" },
+    { text: "Optimize performance in React apps", id: "14" },
+    { text: "Master deployment and CI/CD", id: "15" },
+    { text: "Learn PWA development", id: "16" },
+    { text: "Implement security best practices", id: "17" },
+    { text: "Master debugging and DevTools", id: "18" },
   ]);
 
   function addGoalHandler(enteredGoalText) {
